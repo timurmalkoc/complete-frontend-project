@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import AlertMessage from "./components/AlertMessage";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import ListPosts from "./components/ListPost";
+import { Routes, Route} from 'react-router-dom';
+import { useState } from 'react';
 
-function App() {
+
+function App(props) {
+    const [message, setMessage] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token')) ? true:false)
+    const base_url = "https://kekambas-blog.herokuapp.com"
+
+    const flashMessage = (message, category) => {
+        setMessage(message);
+        setCategory(category);
+    }
+
+    const login = () => {
+        setLoggedIn(true)
+    }
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setLoggedIn(false)
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar logout={logout} loggedIn={loggedIn}/>
+        <div className="container">
+          {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
+          <Routes>
+            <Route path="/" element={<ListPosts base_url={base_url} />}/>
+            <Route path="/login" element={<Login flashMessage={flashMessage} base_url={base_url} login={login}/>}/>  
+            <Route path="/signup" element={<Signup flashMessage={flashMessage} base_url={base_url} login={login}/>}/> 
+          </Routes>
+        </div>
+    </>
   );
 }
 
