@@ -21,6 +21,7 @@ export default function Navbar(props) {
                     </>
                     :
                     <>
+                        <Link className='nav-link' to='/newpost'>New Post</Link>
                         <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
                     </>}
                 </div>

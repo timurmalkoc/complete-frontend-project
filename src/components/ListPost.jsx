@@ -15,7 +15,8 @@ export default function ListPosts(props){
         <>
             <h1 className='text-center mt-4'>Posts</h1>
             <div className='row mt-5'>
-                {data.map((post, idx) => <Card body={post["content"]} title={post["title"]} author={post["author"]["username"]} created={post["author"]["date_created"]} key={idx} />)}
+                {data.map((post, idx) => <Card body={post["content"]} title={post["title"]} author={post["author"]["username"]} 
+                created={post["author"]["date_created"]} id={post["id"]} key={idx} />)}
             </div>
         </>
     )
