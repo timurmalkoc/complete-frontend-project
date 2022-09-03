@@ -5,6 +5,7 @@ import Signup from "./components/Signup";
 import ListPosts from "./components/ListPost";
 import NewPost from "./components/NewPost";
 import SinglePost from "./components/SinglePost";
+import UpdatePost from "./components/UpdatePost";
 import { Routes, Route} from 'react-router-dom';
 import { useState } from 'react';
 
@@ -39,6 +40,7 @@ function App(props) {
             <Route path="/signup" element={<Signup flashMessage={flashMessage} base_url={base_url} login={login}/>}/> 
             <Route path='/newpost' element={<NewPost flashMessage={flashMessage} base_url={base_url} login={loggedIn}/>} />
             <Route path='/singlepost/:postId' element={<SinglePost flashMessage={flashMessage} base_url={base_url} login={loggedIn}/>} />
+            <Route path="/updatepost/:postId" element={<UpdatePost flashMessage={flashMessage} base_url={base_url} login={loggedIn}/>} />
           </Routes>
         </div>
     </>

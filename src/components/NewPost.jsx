@@ -31,7 +31,7 @@ export default function Register(props) {
                     if (data.error){
                         console.error(data.error)
                     } else {
-                        props.flashMessage('You have successfully registered', 'success')
+                        props.flashMessage('You have successfully created the post', 'success')
                         navigate('/')
                     }
                 })
@@ -46,7 +46,7 @@ export default function Register(props) {
                     <label htmlFor="title">Title</label>
                     <input type='text' className='form-control' placeholder='Enter Title' name='title' />
                     <label htmlFor="content">Content</label>
-                    <input type='text' className='form-control' placeholder='Enter Content' name='content' />
+                    <textarea className="form-control" name='content' id="floatingTextarea" placeholder='Enter Content'></textarea>
                     <input type='submit' className='btn btn-primary w-100 mt-3' value='Post' />
                 </div>
             </form>
